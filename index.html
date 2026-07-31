@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornada Mapa da Luz — Mentoria com Becca</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Encontre a clareza para guiar seus próximos passos. Uma jornada de reconexão e alinhamento interno conduzida por Becca.">
+    <meta name="keywords" content="Jornada Mapa da Luz, Becca, autoconhecimento, clareza, propósito, mentoria, espiritualidade, serenidade">
+    <meta name="author" content="Becca">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jornadamapadaluz.com.br/">
+    <meta property="og:title" content="Jornada Mapa da Luz — Mentoria com Becca">
+    <meta property="og:description" content="Encontre a clareza para guiar seus próximos passos. Uma jornada de reconexão e alinhamento interno conduzida por Becca.">
+    <meta property="og:image" content="assets/images/becca/becca_close_up.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://jornadamapadaluz.com.br/">
+    <meta property="twitter:title" content="Jornada Mapa da Luz — Mentoria com Becca">
+    <meta property="twitter:description" content="Encontre a clareza para guiar seus próximos passos. Uma jornada de reconexão e alinhamento interno conduzida por Becca.">
+    <meta property="twitter:image" content="assets/images/becca/becca_close_up.webp">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Local Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+    <!-- Structured Data (Schema.org JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Jornada Mapa da Luz",
+      "description": "Um programa de mentoria e reconexão conduzido por Becca, voltado para clareza mental e alinhamento interno.",
+      "provider": {
+        "@type": "Person",
+        "name": "Becca",
+        "sameAs": "https://jornadamapadaluz.com.br/#becca"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "559.90",
+        "priceCurrency": "BRL",
+        "availability": "https://schema.org/InStock",
+        "url": "https://jornadamapadaluz.com.br/#oferta"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Ambient Starburst Background Animation -->
+    <div id="ambient-starburst-container" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.88;">
+        <canvas id="ambient-starburst-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block;"></canvas>
+    </div>
+
+    <!-- Exit Intent / Reading Time Popup -->
+    <div id="exit-intent-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+        <div class="popup-card">
+            <button id="close-popup-btn" class="popup-close-btn" aria-label="Fechar convite">&times;</button>
+            <div class="popup-header">
+                <span class="gold-dot"></span>
+                <span class="popup-subtitle">Um momento de silêncio...</span>
+            </div>
+            <h3 id="popup-title">Um convite para acompanhar Becca</h3>
+            <p class="popup-text">Antes de partir, se desejar receber mais reflexões de Becca e um guia sutil para iniciar sua busca pessoal pela clareza, deixe seu e-mail para acompanhar as novidades do Mapa da Luz.</p>
+            <div class="popup-form-wrapper">
+                <!-- FORM PLACEHOLDER -->
+                <div class="placeholder-box text-center">
+                    <span class="placeholder-tag">[Formulário de captura de e-mail - Placeholder]</span>
+                    <form class="simulated-form" onsubmit="event.preventDefault(); alert('Inscrição simulada com sucesso!');">
+                        <input type="email" placeholder="Seu melhor e-mail" required aria-label="E-mail para contato">
+                        <button type="submit" class="btn-primary">Acompanhar em silêncio</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Video Modal -->
+    <div id="video-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Visualização do vídeo">
+        <div class="modal-content">
+            <button id="close-modal-btn" class="modal-close-btn" aria-label="Fechar vídeo">&times;</button>
+            <div class="video-container">
+                <iframe id="modal-video-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="main-header" id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">MAPA DA LUZ</a>
+            <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Menu principal">
+                <span class="hamburger"></span>
+            </button>
+            <nav id="primary-navigation" class="nav-menu">
+                <ul>
+                    <li><a href="#metodo" class="nav-link">O Método</a></li>
+                    <li><a href="#becca" class="nav-link">Becca</a></li>
+                    <li><a href="#funcionamento" class="nav-link">O Programa</a></li>
+                    <li><a href="#faq" class="nav-link">Dúvidas</a></li>
+                </ul>
+            </nav>
+            <a href="#oferta" class="btn-secondary nav-cta">Conhecer a Jornada</a>
+        </div>
+    </header>
+
+    <main>
+        
+        <!-- Scene 1: O Portal (Hero) -->
+        <section id="hero" class="scene hero-section">
+            <div class="container grid-container">
+                <div class="hero-text scroll-reveal">
+                    <span class="tagline">Jornada Mapa da Luz</span>
+                    <h1>Encontre a clareza para guiar seus próximos passos.</h1>
+                    <p class="subtitle">Uma jornada de reconexão e alinhamento interno conduzida por Becca.</p>
+                    <a href="#identificacao" class="btn-primary scroll-to-btn">Iniciar a caminhada</a>
+                </div>
+                <div class="hero-image-wrapper scroll-reveal delay-1">
+                    <div class="organic-frame">
+                        <img src="assets/images/becca/becca_close_up.webp" alt="Retrato de Becca, mentora do programa Mapa da Luz" class="hero-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 2: O Espelho (Identificação) -->
+        <section id="identificacao" class="scene identification-section">
+            <div class="container container-narrow text-center scroll-reveal">
+                <p class="editorial-quote">
+                    Às vezes, a vida exige mais de nós do que o barulho ao redor permite processar. Você sente que, no meio de tantas direções, perdeu o mapa de si mesma?
+                </p>
+                <div class="divider-gold-line"></div>
+            </div>
+        </section>
+
+        <!-- Scene 3: A Sombra (Problema) -->
+        <section id="problema" class="scene problem-section">
+            <div class="container">
+                <div class="editorial-grid">
+                    <div class="editorial-col scroll-reveal">
+                        <span class="col-num">01</span>
+                        <h2 class="col-title">O Excesso</h2>
+                        <p class="col-desc">O ruído diário que apaga a voz da sua própria intuição e gera a sensação de estar sempre correndo sem sair do lugar.</p>
+                    </div>
+                    <div class="editorial-col scroll-reveal delay-1">
+                        <span class="col-num">02</span>
+                        <h2 class="col-title">A Direção Sem Bússola</h2>
+                        <p class="col-desc">Seguir caminhos traçados por expectativas externas, esquecendo a própria rota e desatendendo seus desejos mais sinceros.</p>
+                    </div>
+                    <div class="editorial-col scroll-reveal delay-2">
+                        <span class="col-num">03</span>
+                        <h2 class="col-title">O Esgotamento</h2>
+                        <p class="col-desc">A sensação de que, mesmo realizando muito e mantendo-se ocupada, falta alinhamento real com o que é verdadeiramente essencial.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 4: O Caminho (Método) -->
+        <section id="metodo" class="scene method-section">
+            <div class="container grid-container">
+                <div class="method-intro scroll-reveal">
+                    <span class="tagline">O Método</span>
+                    <h2>A Jornada Mapa da Luz</h2>
+                    <p class="paragraph-lead">Um programa desenhado para trazer calma à mente e direção aos seus passos. Não se trata de buscar respostas fora, mas de iluminar o caminho que já existe dentro de você.</p>
+                </div>
+                <div class="method-pillars scroll-reveal delay-1">
+                    <div class="pillar-item">
+                        <h3 class="pillar-title">1. Clareza</h3>
+                        <p class="pillar-desc">O processo de silenciar as influências externas para escutar o que realmente importa no seu momento atual.</p>
+                    </div>
+                    <div class="pillar-item">
+                        <h3 class="pillar-title">2. Alinhamento</h3>
+                        <p class="pillar-desc">O desenho da sua bússola pessoal com base em sua verdadeira essência, valores e aspirações profundas.</p>
+                    </div>
+                    <div class="pillar-item">
+                        <h3 class="pillar-title">3. Sustentação</h3>
+                        <p class="pillar-desc">A integração desse estado de presença no seu cotidiano prático, com rituais e ações que protegem sua paz.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 5: A Guia (Quem é Becca) -->
+        <section id="becca" class="scene becca-section">
+            <div class="container grid-container-equal">
+                <div class="becca-image scroll-reveal">
+                    <div class="editorial-frame">
+                        <img src="assets/images/becca/becca_blazer.jpg" alt="Becca vestindo um blazer preto, olhando com um sorriso sereno" class="becca-img">
+                    </div>
+                </div>
+                <div class="becca-text scroll-reveal delay-1">
+                    <span class="tagline font-serif italic">A Guia</span>
+                    <h2>Becca</h2>
+                    <p class="subtitle-serif">Sua guia nesta travessia</p>
+                    <p>Dedico minha jornada a ajudar pessoas a resgatarem seu espaço de clareza e presença. O Mapa da Luz nasceu do entendimento de que a verdadeira sofisticação reside na simplicidade de saber exatamente quem somos e para onde queremos caminhar.</p>
+                    <p class="paragraph-extra">Com sensibilidade e escuta atenta, convido você a dar uma pausa no ruído externo para redesenhar seu percurso de maneira leve, autêntica e conectada.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 6: O Ciclo (Como funciona) -->
+        <section id="funcionamento" class="scene timeline-section">
+            <div class="container">
+                <div class="section-header text-center scroll-reveal">
+                    <span class="tagline">O Programa</span>
+                    <h2>Como Funciona</h2>
+                    <p class="subtitle">Uma travessia em três momentos integrados e contínuos.</p>
+                </div>
+                <div class="timeline-wrapper scroll-reveal">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="timeline-step">
+                        <div class="timeline-indicator">1</div>
+                        <div class="timeline-content">
+                            <span class="step-tag">Fase 1</span>
+                            <h3>O Reconhecimento</h3>
+                            <p>Identificação dos pontos de desgaste invisíveis e silenciamento inicial dos ruídos que bloqueiam sua perspectiva clara.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step">
+                        <div class="timeline-indicator">2</div>
+                        <div class="timeline-content">
+                            <span class="step-tag">Fase 2</span>
+                            <h3>O Alinhamento</h3>
+                            <p>Mapeamento sistemático dos valores internos, resgate da autenticidade e definição de uma rota alinhada à sua essência.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step">
+                        <div class="timeline-indicator">3</div>
+                        <div class="timeline-content">
+                            <span class="step-tag">Fase 3</span>
+                            <h3>A Presença</h3>
+                            <p>Desenvolvimento e implantação de práticas e ferramentas cotidianas para sustentar e manter a clareza e a conexão ativa.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 7: O Florescer (Benefícios) -->
+        <section id="beneficios" class="scene benefits-section">
+            <div class="container">
+                <div class="section-header text-center scroll-reveal">
+                    <span class="tagline">A Transformação</span>
+                    <h2>O Florescer</h2>
+                    <p class="subtitle">O que muda no seu cotidiano ao recuperar sua bússola interna.</p>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-card scroll-reveal">
+                        <div class="benefit-icon-wrapper">
+                            <!-- Minimal SVG Icon for Clarity -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <h3>Clareza Mental</h3>
+                        <p>Decisões tomadas com base no seu centro, de maneira segura, consciente e livre das pressões e ruídos externos.</p>
+                    </div>
+                    <div class="benefit-card scroll-reveal delay-1">
+                        <div class="benefit-icon-wrapper">
+                            <!-- Minimal SVG Icon for Lightness -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <h3>Leveza Diária</h3>
+                        <p>Uma rotina com espaço para respiração profunda, presença genuína e serenidade nas pequenas ações diárias.</p>
+                    </div>
+                    <div class="benefit-card scroll-reveal delay-2">
+                        <div class="benefit-icon-wrapper">
+                            <!-- Minimal SVG Icon for Inner Trust -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3>Confiança Interna</h3>
+                        <p>A certeza silenciosa de estar caminhando passo a passo na direção exata daquilo que faz sentido profundo para você.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 8: A Bagagem (O que está incluso) -->
+        <section id="incluso" class="scene inclusive-section">
+            <div class="container container-medium">
+                <div class="section-header text-center scroll-reveal">
+                    <span class="tagline">A Experiência</span>
+                    <h2>A Estrutura da Jornada</h2>
+                    <p class="subtitle">Tudo o que está planejado para apoiar sua transformação.</p>
+                </div>
+                <div class="inclusive-list scroll-reveal">
+                    <div class="inclusive-item">
+                        <span class="gold-bullet"></span>
+                        <div class="inclusive-details">
+                            <h3>Acesso completo ao programa online Jornada Mapa da Luz</h3>
+                            <p>Metodologia organizada em aulas acessíveis com conteúdo focado e aplicável.</p>
+                        </div>
+                    </div>
+                    <div class="inclusive-item">
+                        <span class="gold-bullet"></span>
+                        <div class="inclusive-details">
+                            <h3>Suporte e orientação ao longo da caminhada</h3>
+                            <p>Espaço para tirar dúvidas e receber acompanhamento sutil durante todo o percurso.</p>
+                        </div>
+                    </div>
+                    <!-- BRIEFING FIDELITY PLACEHOLDERS -->
+                    <div class="inclusive-item placeholder-item">
+                        <span class="gold-bullet dashed"></span>
+                        <div class="inclusive-details">
+                            <span class="placeholder-tag">[Item Adicional de Conteúdo - Placeholder para posterior preenchimento]</span>
+                            <p class="placeholder-text-muted">Este espaço será preenchido com módulos ou ferramentas adicionais descritos na versão final do briefing de conteúdo.</p>
+                        </div>
+                    </div>
+                    <div class="inclusive-item placeholder-item">
+                        <span class="gold-bullet dashed"></span>
+                        <div class="inclusive-details">
+                            <span class="placeholder-tag">[Item Adicional de Suporte - Placeholder para posterior preenchimento]</span>
+                            <p class="placeholder-text-muted">Este espaço descreverá comunidades, encontros ou canais de contato específicos a serem definidos pelo especialista.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 9: Conheça meu trabalho (Vídeos) -->
+        <section id="depoimentos" class="scene video-section">
+            <div class="container">
+                <div class="section-header text-center scroll-reveal">
+                    <span class="tagline">Portfólio</span>
+                    <h2>Conheça meu trabalho</h2>
+                    <p class="subtitle">Assista aos conteúdos e vivências preparados por Becca.</p>
+                </div>
+                
+                <div class="video-grid three-cols">
+                    <!-- VIDEO CARD 1 -->
+                    <div class="video-card scroll-reveal" data-video-id="kgBkehpzS7w">
+                        <div class="video-thumbnail-wrapper">
+                            <div class="video-thumbnail-placeholder">
+                                <div class="play-overlay">
+                                    <span class="play-btn-circle"></span>
+                                    <span class="play-label">Assistir conteúdo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">Abertura do Caminho</h3>
+                            <p class="video-caption">Uma introdução aos princípios de clareza interna e silêncio mental.</p>
+                        </div>
+                    </div>
+
+                    <!-- VIDEO CARD 2 -->
+                    <div class="video-card scroll-reveal delay-1" data-video-id="zZA7iOJNsiY">
+                        <div class="video-thumbnail-wrapper">
+                            <div class="video-thumbnail-placeholder">
+                                <div class="play-overlay">
+                                    <span class="play-btn-circle"></span>
+                                    <span class="play-label">Assistir conteúdo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">O Resgate da Presença</h3>
+                            <p class="video-caption">Práticas sutis para reconexão diária e diminuição do ruído externo.</p>
+                        </div>
+                    </div>
+
+                    <!-- VIDEO CARD 3 -->
+                    <div class="video-card scroll-reveal delay-2" data-video-id="ClIDcB5cVI4">
+                        <div class="video-thumbnail-wrapper">
+                            <div class="video-thumbnail-placeholder">
+                                <div class="play-overlay">
+                                    <span class="play-btn-circle"></span>
+                                    <span class="play-label">Assistir conteúdo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">O Mapeamento da Rota</h3>
+                            <p class="video-caption">Como alinhar suas decisões diárias com seus valores mais profundos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 10: O Convite (Oferta) -->
+        <section id="oferta" class="scene offer-section">
+            <div class="container container-narrow">
+                <div class="offer-card scroll-reveal text-center">
+                    <span class="tagline">O Convite</span>
+                    <h2>Iniciar a Jornada Mapa da Luz</h2>
+                    <p class="offer-desc">Seu passo em direção a um cotidiano com mais propósito, presença e serenidade.</p>
+                    
+                    <div class="price-box">
+                        <p class="price-sub">Investimento na sua caminhada</p>
+                        <div class="price-display">
+                            <span class="currency">R$</span>
+                            <span class="amount">559,90</span>
+                            <span class="period">à vista</span>
+                        </div>
+                        <p class="installment">ou em 2x de <span class="inst-val">R$ 294,69</span></p>
+                    </div>
+                    
+                    <button class="btn-primary btn-large simulated-checkout-btn">Inscrever-se na Jornada</button>
+                    <p class="payment-note">Pagamento seguro via Cartão de Crédito ou PIX.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 11: A Salvaguarda (Garantia) -->
+        <section id="garantia" class="scene guarantee-section">
+            <div class="container container-narrow text-center scroll-reveal">
+                <div class="guarantee-badge">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 11l2 2 4-4"/>
+                    </svg>
+                </div>
+                <h2>Garantia de 7 dias</h2>
+                <p class="guarantee-text">Experimente a Jornada Mapa da Luz. Se nos primeiros 7 dias você sentir que este caminho não ressoa com seu momento atual, o reembolso será feito de forma simples e integral.</p>
+                <div class="divider-gold-line"></div>
+            </div>
+        </section>
+
+        <!-- Scene 12: A Clareza (FAQ) -->
+        <section id="faq" class="scene faq-section">
+            <div class="container container-medium">
+                <div class="section-header text-center scroll-reveal">
+                    <span class="tagline">Dúvidas</span>
+                    <h2>Perguntas Frequentes</h2>
+                    <p class="subtitle">Respostas claras para apoiar sua decisão de início.</p>
+                </div>
+                
+                <div class="faq-list scroll-reveal">
+                    
+                    <div class="faq-item">
+                        <button class="faq-trigger" aria-expanded="false" aria-controls="faq-answer-1">
+                            <span>Como funciona o acesso ao programa?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div id="faq-answer-1" class="faq-panel" role="region">
+                            <div class="faq-content">
+                                <span class="placeholder-tag">[Detalhes sobre plataforma de acesso e tempo de duração - Placeholder]</span>
+                                <p class="placeholder-text-muted">As informações de acesso, liberação de módulos e tempo de disponibilidade do curso serão inseridas aqui conforme a configuração final do programa na plataforma de membros escolhida.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger" aria-expanded="false" aria-controls="faq-answer-2">
+                            <span>Para quem é indicada a Jornada?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div id="faq-answer-2" class="faq-panel" role="region">
+                            <div class="faq-content">
+                                <span class="placeholder-tag">[Detalhes sobre perfil de aluna indicada - Placeholder]</span>
+                                <p class="placeholder-text-muted">Definições sobre o nível de experiência necessário, tempo diário recomendado de estudo e pré-requisitos emocionais/profissionais a serem definidos com Becca.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger" aria-expanded="false" aria-controls="faq-answer-3">
+                            <span>Terei suporte direto durante as fases?</span>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div id="faq-answer-3" class="faq-panel" role="region">
+                            <div class="faq-content">
+                                <span class="placeholder-tag">[Detalhes sobre canais e dinâmica de suporte - Placeholder]</span>
+                                <p class="placeholder-text-muted">Explicação sobre como funciona a interação com a mentora, canais de comunicação e respostas de dúvidas que serão fornecidas no programa.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 13: O Passo Final (CTA Final) -->
+        <section id="cta-final" class="scene cta-final-section">
+            <div class="container grid-container-equal align-items-center">
+                <div class="cta-image scroll-reveal">
+                    <div class="organic-frame-full">
+                        <img src="assets/images/becca/becca_standing.png" alt="Becca em pé, vestindo roupas em tons neutros de azul e branco, em um ambiente elegante" class="cta-final-img">
+                    </div>
+                </div>
+                <div class="cta-content scroll-reveal delay-1">
+                    <p class="final-quote font-serif italic">"A clareza não é algo que encontramos por acaso. É um caminho que decidimos trilhar."</p>
+                    <a href="#oferta" class="btn-primary scroll-to-btn">Iniciar minha travessia</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scene 14: O Silêncio (Rodapé) -->
+    <footer id="footer" class="main-footer">
+        <div class="container text-center">
+            <p class="footer-logo">MAPA DA LUZ</p>
+            <p class="footer-copy">Jornada Mapa da Luz &copy; 2026. Todos os direitos reservados.</p>
+            <div class="footer-placeholder">
+                <span class="placeholder-tag">[E-mail de suporte - Placeholder]</span>
+            </div>
+            <div class="footer-links">
+                <a href="#metodo">O Método</a>
+                <span class="dot-separator">•</span>
+                <a href="#becca">Becca</a>
+                <span class="dot-separator">•</span>
+                <a href="#funcionamento">O Programa</a>
+                <span class="dot-separator">•</span>
+                <a href="#faq">Dúvidas</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Local Script -->
+    <script src="script.js"></script>
+</body>
+</html>
